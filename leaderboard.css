@@ -1,0 +1,13 @@
+.selected {
+	background-color: silver;
+}
+
+.player-count, .buttons, .showSelectedPlayer {
+	text-align: center;
+}
+
+.login {
+	font-size: 0.4em;
+	font-weight: normal;
+	float: right;
+}

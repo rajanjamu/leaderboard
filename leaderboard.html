@@ -1,0 +1,56 @@
+<head>
+	<title>Leaderboard</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2">
+				<h1 class="page-title">Leaderboard<span class="login">{{> loginButtons}}</span></h1>
+				<br>
+				{{> addPlayerForm}}
+				<br>
+				{{> leaderboard}}
+			</div>
+		</div>
+	</div>
+</body>
+
+<template name="leaderboard">
+	{{#if currentUser}}
+		<h4 class="player-count">Total Players: {{playerCount}}</h4>
+		<ul class="list-group">
+			{{#each player}}
+			  <li class="player {{selectedClass}} list-group-item">
+			    <span class="badge">{{score}}</span>
+			    {{name}}
+			  </li>
+			{{/each}}
+		</ul>
+
+		<div class="buttons">
+			{{#if showSelectedPlayer}}
+				<button class="btn btn-default increment" type="submit">Give 5 points</button>
+				<button class="btn btn-default decrement" type="submit">Take 5 points</button>
+				<button class="btn btn-default remove" type="submit">Remove Player</button>
+			{{/if}}
+		</div>
+	{{else}}
+		<div>Register or login to manage Leaderboard!</div>
+	{{/if}}
+</template>
+
+<template name="addPlayerForm">
+	{{#if currentUser}}
+		<form class="form-inline">
+			<div class="form-group">
+				<label class="sr-only">Player Name</label>
+				<input type="text" name="playerName" placeholder="Player Name" class="form-control">
+			</div>
+			<div class="form-group">
+				<label class="sr-only">Score</label>
+				<input type="number" name="playerScore" placeholder="Score" class="form-control">
+			</div>
+			<input type="submit" value="Add Player" class="btn btn-default">
+		</form>
+	{{/if}}
+</template>
